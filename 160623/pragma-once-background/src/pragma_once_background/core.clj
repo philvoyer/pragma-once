@@ -25,7 +25,7 @@
   (assoc state :press false))
 
 (quil/defsketch pragma-once-background
-  :title  "#pragma once background"
+  :title  "#pragma-once-background"
   :size  [256 256]
   :setup  setup
   :draw   draw
