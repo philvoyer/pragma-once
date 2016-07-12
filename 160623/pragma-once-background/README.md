@@ -2,9 +2,9 @@
 
 ## Summary
 
-Animation frame start by filling the canvas background with a clear color.
+Animation frame starts by filling the canvas background with a clear color.
 
 ## Description
 
-A minimalistic program that fill the canvas background with a random clear color.
-Clear color change on click press.
+A minimalistic program that fills the canvas background with a random clear color.
+Clear color changes on click press.
