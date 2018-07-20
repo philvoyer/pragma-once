@@ -2,6 +2,9 @@
   (:require [quil.core :as quil]
             [quil.middleware :as qm]))
 
+(def timer-delay-initial 1000)
+(def timer-delay-max 3000)
+
 (defn tick []
   (quil/fill 255))
 
@@ -9,7 +12,7 @@
   (quil/frame-rate 60)
   (quil/no-stroke)
   {:time {:last 0 :elapsed 0}
-   :timer {:delay 1000 :current 0}
+   :timer {:delay timer-delay-initial :current 0}
    :timelapse {:from 0 :now 0}
    :click-press false})
 
@@ -38,7 +41,7 @@
         now (quil/millis)
         current (:current (:timer state))]
     (assoc state
-           :timer {:delay (min (- now from) 3000) :current current}
+           :timer {:delay (min (- now from) timer-delay-max) :current current}
            :timelapse {:from now}))
   state)
 
