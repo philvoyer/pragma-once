@@ -34,9 +34,6 @@
   (quil/fill 0 7))
 
 (defn click-press [state event]
-  (assoc state :click-press true))
-
-(defn click-release [state event]
   (let [from (:from (:timelapse state))
         now (quil/millis)
         current (:current (:timer state))]
@@ -52,6 +49,5 @@
   :draw draw
   :update update-scene
   :mouse-pressed click-press
-  :mouse-released click-release
   :features [:resizable]
   :middleware [qm/fun-mode])
