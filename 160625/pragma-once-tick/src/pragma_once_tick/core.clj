@@ -29,8 +29,7 @@
 (defn update-scene [state]
   (assoc state
          :time  (update-time (:time state) (quil/millis))
-         :timer (update-timer (:timer state) (:elapsed (:time state)) tick))
-  state)
+         :timer (update-timer (:timer state) (:elapsed (:time state)) tick)))
 
 (defn draw [state]
   (quil/rect 0 0 (quil/width) (quil/height))
@@ -42,8 +41,7 @@
         current (:current (:timer state))]
     (assoc state
            :timer {:delay (min (- now from) timer-delay-max) :current current}
-           :timelapse {:from now}))
-  state)
+           :timelapse {:from now})))
 
 (quil/defsketch pragma-once-tick
   :title  "#pragma-once-tick"
