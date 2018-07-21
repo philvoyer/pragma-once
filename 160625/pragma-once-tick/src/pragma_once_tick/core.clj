@@ -50,12 +50,13 @@
   (let [from (:timelapse-from state)
         now (:time-current state)]
     (assoc state
+           :timer-current 0
            :timer-delay (min (- now from) timer-delay-max)
            :timelapse-from now)))
 
 (quil/defsketch pragma-once-tick
-  :title  "#pragma-once-tick"
-  :size  [256 256]
+  :title "#pragma-once-tick"
+  :size [256 256]
   :setup setup
   :draw draw
   :update update-scene
