@@ -2,46 +2,56 @@
   (:require [quil.core :as quil]
             [quil.middleware :as qm]))
 
-(def timer-delay-initial 1000)
-(def timer-delay-max 3000)
+(def timer-delay-initial 3000)
+(def timer-delay-max 5000)
 
 (defn tick []
+  (quil/background 255)
   (quil/fill 255))
 
 (defn setup []
   (quil/frame-rate 60)
   (quil/no-stroke)
-  {:time {:last 0 :elapsed 0}
-   :timer {:delay timer-delay-initial :current 0}
-   :timelapse {:from 0 :now 0}
-   :click-press false})
+  {:time-current 0
+   :time-last 0
+   :time-elapsed 0
+   :timer-delay timer-delay-initial
+   :timer-current 0
+   :timelapse-from 0
+   :timelapse-now 0})
 
-(defn update-time [{:keys [last elapsed]} timestamp]
-  {:last timestamp :elapsed (- timestamp last)})
-
-(defn update-timer [{:keys [current delay]} timedelta callback]
-  (if (> current delay)
+(defn update-timer [state callback]
+  (if (> (:timer-current state) (:timer-delay state))
     (do
       (callback)
-      {:current (mod current delay) :delay delay})
-    {:current (+ current timedelta) :delay delay}))
+      (mod (:timer-current state) (:timer-delay state)))
+    (+ (:timer-current state) (:time-elapsed state))))
 
 (defn update-scene [state]
   (assoc state
-         :time  (update-time (:time state) (quil/millis))
-         :timer (update-timer (:timer state) (:elapsed (:time state)) tick)))
+         :time-current (quil/millis)
+         :time-elapsed (- (:time-current state) (:time-last state))
+         :time-last (:time-current state)
+         :timer-current (update-timer state tick)))
 
 (defn draw [state]
+  (quil/fill 0 7)
   (quil/rect 0 0 (quil/width) (quil/height))
-  (quil/fill 0 7))
+  (quil/fill 255)
+  (quil/text-size 24)
+  (quil/text-align :center :center)
+  (quil/text (str "timer") (/ (quil/width) 2) (- (/ (quil/height) 2) 64))
+  (quil/text (str (:time-current state)) (/ (quil/width) 2) (- (/ (quil/height) 2) 32))
+  (quil/text (str (:time-last state)) (/ (quil/width) 2) (/ (quil/height) 2))
+  (quil/text (str (:time-elapsed state)) (/ (quil/width) 2) (+ (/ (quil/height) 2) 32))
+  (quil/text (str (:timer-current state)) (/ (quil/width) 2) (+ (/ (quil/height) 2) 64)))
 
 (defn click-press [state event]
-  (let [from (:from (:timelapse state))
-        now (quil/millis)
-        current (:current (:timer state))]
+  (let [from (:timelapse-from state)
+        now (:time-current state)]
     (assoc state
-           :timer {:delay (min (- now from) timer-delay-max) :current current}
-           :timelapse {:from now})))
+           :timer-delay (min (- now from) timer-delay-max)
+           :timelapse-from now)))
 
 (quil/defsketch pragma-once-tick
   :title  "#pragma-once-tick"
