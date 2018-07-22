@@ -16,7 +16,7 @@
    :time-elapsed 0
    :timer-delay timer-delay-initial
    :timer-current 0
-   :timelapse-from 0})
+   :timelapse 0})
 
 (defn update-timer [state callback]
   (if (> (:timer-current state) (:timer-delay state))
@@ -38,12 +38,10 @@
 
 (defn click-press [state event]
   (tick)
-  (let [from (:timelapse-from state)
-        now (:time-current state)]
-    (assoc state
-           :timer-current 0
-           :timer-delay (min (- now from) timer-delay-max)
-           :timelapse-from now)))
+  (assoc state
+         :timer-current 0
+         :timer-delay (min (- (:time-current state) (:timelapse state)) timer-delay-max)
+         :timelapse (:time-current state)))
 
 (quil/defsketch pragma-once-tick
   :title "#pragma-once-tick"
