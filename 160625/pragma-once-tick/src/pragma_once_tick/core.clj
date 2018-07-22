@@ -16,8 +16,7 @@
    :time-elapsed 0
    :timer-delay timer-delay-initial
    :timer-current 0
-   :timelapse-from 0
-   :timelapse-now 0})
+   :timelapse-from 0})
 
 (defn update-timer [state callback]
   (if (> (:timer-current state) (:timer-delay state))
