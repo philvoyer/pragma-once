@@ -2,12 +2,11 @@
   (:require [quil.core :as quil]
             [quil.middleware :as qm]))
 
-(def timer-delay-initial 3000)
+(def timer-delay-initial 1000)
 (def timer-delay-max 5000)
 
 (defn tick []
-  (quil/background 255)
-  (quil/fill 255))
+  (quil/background 255))
 
 (defn setup []
   (quil/frame-rate 60)
@@ -36,15 +35,7 @@
 
 (defn draw [state]
   (quil/fill 0 7)
-  (quil/rect 0 0 (quil/width) (quil/height))
-  (quil/fill 255)
-  (quil/text-size 24)
-  (quil/text-align :center :center)
-  (quil/text (str "timer") (/ (quil/width) 2) (- (/ (quil/height) 2) 64))
-  (quil/text (str (:time-current state)) (/ (quil/width) 2) (- (/ (quil/height) 2) 32))
-  (quil/text (str (:time-last state)) (/ (quil/width) 2) (/ (quil/height) 2))
-  (quil/text (str (:time-elapsed state)) (/ (quil/width) 2) (+ (/ (quil/height) 2) 32))
-  (quil/text (str (:timer-current state)) (/ (quil/width) 2) (+ (/ (quil/height) 2) 64)))
+  (quil/rect 0 0 (quil/width) (quil/height)))
 
 (defn click-press [state event]
   (let [from (:timelapse-from state)
