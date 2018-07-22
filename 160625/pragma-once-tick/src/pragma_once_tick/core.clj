@@ -38,6 +38,7 @@
   (quil/rect 0 0 (quil/width) (quil/height)))
 
 (defn click-press [state event]
+  (tick)
   (let [from (:timelapse-from state)
         now (:time-current state)]
     (assoc state
