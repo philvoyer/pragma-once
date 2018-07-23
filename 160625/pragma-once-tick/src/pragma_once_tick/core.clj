@@ -40,7 +40,8 @@
   (tick)
   (assoc state
          :timer-current 0
-         :timer-delay (min (- (:time-current state) (:timelapse state)) timer-delay-max)
+         :timer-delay (- (:time-current state) (:timelapse state))
+         ;; :timer-delay (min (- (:time-current state) (:timelapse state)) timer-delay-max)
          :timelapse (:time-current state)))
 
 (quil/defsketch pragma-once-tick
