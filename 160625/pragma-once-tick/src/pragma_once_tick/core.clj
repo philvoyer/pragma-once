@@ -16,7 +16,9 @@
    :time-elapsed 0
    :timer-delay timer-delay-initial
    :timer-current 0
-   :timelapse 0})
+   :timelapse 0
+   :click-1 0
+   :click-2 0})
 
 (defn update-timer [state callback]
   (if (> (:timer-current state) (:timer-delay state))
@@ -38,6 +40,10 @@
 
 (defn click-release [state event]
   (tick)
+  ;; (if (= (:click-1 state) 0)
+  ;;   ()
+  ;;   ()
+  ;;   )
   (assoc state
          :timer-current 0
          :timer-delay (- (:time-current state) (:timelapse state))
