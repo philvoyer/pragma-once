@@ -40,6 +40,8 @@
 
 (defn click-release [state event]
   (tick)
+  ;; TODO on fisrt click pause, change color et draw timelapse
+  ;; on second click reset timelapse and start
   ;; (if (= (:click-1 state) 0)
   ;;   ()
   ;;   ()
