@@ -3,6 +3,7 @@
             [quil.middleware :as qm]))
 
 (def timer-delay-initial 1000)
+(def timer-delay-min 1)
 (def timer-delay-max 5000)
 
 (defn tick []
@@ -14,11 +15,11 @@
   {:time-current 0
    :time-last 0
    :time-elapsed 0
+   :time-lapse 0
    :timer-delay timer-delay-initial
    :timer-current 0
-   :timelapse 0
-   :click-1 0
-   :click-2 0})
+   :click-1 false
+   :click-2 false})
 
 (defn update-timer [state callback]
   (if (> (:timer-current state) (:timer-delay state))
@@ -42,14 +43,16 @@
   (tick)
   ;; TODO on fisrt click pause, change color et draw timelapse
   ;; on second click reset timelapse and start
-  ;; (if (= (:click-1 state) 0)
-  ;;   ()
-  ;;   ()
-  ;;   )
-  (assoc state
-         :timer-current 0
-         :timer-delay (- (:time-current state) (:timelapse state))
-         :timelapse (:time-current state)))
+  (if (= (:click-1 state) true)
+    (assoc state
+            :timer-current 0
+            :timer-delay (- (:time-current state) (:time-lapse state))
+            :timelapse (:time-current state))
+    (assoc state
+            :timer-current 0
+            :timer-delay (- (:time-current state) (:time-lapse state))
+            :timelapse (:time-current state))
+    ))
 
 (quil/defsketch pragma-once-tick
   :title "#pragma-once-tick"
