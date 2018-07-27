@@ -57,11 +57,11 @@
     (assoc state
             :timer-current 0
             :timer-delay (- (:time-current state) (:time-lapse state))
-            :timelapse (:time-current state))
+            :time-lapse (:time-current state))
     (assoc state
             :timer-current 0
             :timer-delay (- (:time-current state) (:time-lapse state))
-            :timelapse (:time-current state))
+            :time-lapse (:time-current state))
     ))
 
 (quil/defsketch pragma-once-tick
