@@ -37,7 +37,17 @@
 
 (defn draw [state]
   (quil/fill 0 7)
-  (quil/rect 0 0 (quil/width) (quil/height)))
+  (quil/rect 0 0 (quil/width) (quil/height))
+  ;;
+  (quil/fill 255)
+  (quil/text-size 24)
+  (quil/text-align :center :center)
+  (quil/text (str "timer") (/ (quil/width) 2) (- (/ (quil/height) 2) 64))
+  (quil/text (str (:time-current state)) (/ (quil/width) 2) (- (/ (quil/height) 2) 32))
+  (quil/text (str (:timer-delay state)) (/ (quil/width) 2) (/ (quil/height) 2))
+  (quil/text (str (:time-elapsed state)) (/ (quil/width) 2) (+ (/ (quil/height) 2) 32))
+  (quil/text (str (:timer-current state)) (/ (quil/width) 2) (+ (/ (quil/height) 2) 64)))
+
 
 (defn click-release [state event]
   (tick)
