@@ -15,7 +15,7 @@
   {:time-current 0
    :time-last 0
    :time-elapsed 0
-   :time-lapse 0
+   :time-stamp 0
    :timer-delay timer-delay-initial
    :timer-current 0
    :click-1 false
@@ -45,9 +45,8 @@
   (quil/text (str "timer") (/ (quil/width) 2) (- (/ (quil/height) 2) 64))
   (quil/text (str (:time-current state)) (/ (quil/width) 2) (- (/ (quil/height) 2) 32))
   (quil/text (str (:timer-delay state)) (/ (quil/width) 2) (/ (quil/height) 2))
-  (quil/text (str (:time-elapsed state)) (/ (quil/width) 2) (+ (/ (quil/height) 2) 32))
+  (quil/text (str (:time-stamp state)) (/ (quil/width) 2) (+ (/ (quil/height) 2) 32))
   (quil/text (str (:timer-current state)) (/ (quil/width) 2) (+ (/ (quil/height) 2) 64)))
-
 
 (defn click-release [state event]
   (tick)
@@ -56,12 +55,12 @@
   (if (= (:click-1 state) true)
     (assoc state
             :timer-current 0
-            :timer-delay (- (:time-current state) (:time-lapse state))
-            :time-lapse (:time-current state))
+            :timer-delay (- (:time-current state) (:time-stamp state))
+            :time-stamp (:time-current state))
     (assoc state
             :timer-current 0
-            :timer-delay (- (:time-current state) (:time-lapse state))
-            :time-lapse (:time-current state))
+            :timer-delay (- (:time-current state) (:time-stamp state))
+            :time-stamp (:time-current state))
     ))
 
 (quil/defsketch pragma-once-tick
