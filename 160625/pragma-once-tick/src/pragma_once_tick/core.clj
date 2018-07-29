@@ -17,7 +17,7 @@
    :time-elapsed 0
    :time-stamp 0
    :timer-delay timer-delay-initial
-   :timer-current 0
+   :timer-current 0})
 
 (defn update-timer [state callback]
   (if (> (:timer-current state) (:timer-delay state))
@@ -48,6 +48,10 @@
 
 (defn click-release [state event]
   (tick)
+  (assoc state
+         :timer-current 0
+         :timer-delay (min (- (:time-current state) (:time-stamp state)) timer-delay-max)
+         :time-stamp (:time-current state)))
 
 (quil/defsketch pragma-once-tick
   :title "#pragma-once-tick"
