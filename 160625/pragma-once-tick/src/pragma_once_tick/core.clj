@@ -18,8 +18,6 @@
    :time-stamp 0
    :timer-delay timer-delay-initial
    :timer-current 0
-   :click-1 false
-   :click-2 false})
 
 (defn update-timer [state callback]
   (if (> (:timer-current state) (:timer-delay state))
@@ -50,18 +48,6 @@
 
 (defn click-release [state event]
   (tick)
-  ;; TODO on fisrt click pause, change color et draw timelapse
-  ;; on second click reset timelapse and start
-  (if (= (:click-1 state) true)
-    (assoc state
-            :timer-current 0
-            :timer-delay (- (:time-current state) (:time-stamp state))
-            :time-stamp (:time-current state))
-    (assoc state
-            :timer-current 0
-            :timer-delay (- (:time-current state) (:time-stamp state))
-            :time-stamp (:time-current state))
-    ))
 
 (quil/defsketch pragma-once-tick
   :title "#pragma-once-tick"
