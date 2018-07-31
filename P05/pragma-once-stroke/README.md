@@ -1,4 +1,4 @@
-#\#pragma-once-stroke
+# \#pragma-once-stroke
 
 ## Summary
 
