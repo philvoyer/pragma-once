@@ -80,16 +80,16 @@
   state)
 
 (quil/defsketch pragma-once-click
-  :title  "#pragma-once-click"
-  :size  [256 256]
-  :setup  setup
-  :draw   draw
+  :title "#pragma-once-click"
+  :size [256 256]
+  :setup setup
+  :draw draw
   :update update-scene
-  :mouse-pressed  click-press
+  :mouse-pressed click-press
   :mouse-released click-release
-  :mouse-dragged  click-drag
-  :mouse-entered  cursor-enter
-  :mouse-exited   cursor-exit
-  :mouse-moved    cursor-move
-  :features      [:resizable]
-  :middleware    [qm/fun-mode])
+  :mouse-dragged click-drag
+  :mouse-entered cursor-enter
+  :mouse-exited cursor-exit
+  :mouse-moved cursor-move
+  :features [:resizable :no-bind-output]
+  :middleware [qm/fun-mode])
