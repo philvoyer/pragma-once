@@ -82,14 +82,14 @@
   (assoc state :in-screen false))
 
 (quil/defsketch pragma-once-trail
-  :title  "#pragma-once-trail"
-  :size  [256 256]
-  :setup  setup
-  :draw   draw
+  :title "#pragma-once-trail"
+  :size [256 256]
+  :setup setup
+  :draw draw
   :update update-scene
-  :mouse-pressed  mouse-press
+  :mouse-pressed mouse-press
   :mouse-released mouse-release
-  :mouse-entered  mouse-enter
-  :mouse-exited   mouse-exit
-  :features      [:resizable]
-  :middleware    [qm/fun-mode])
+  :mouse-entered mouse-enter
+  :mouse-exited mouse-exit
+  :features [:resizable :no-bind-output]
+  :middleware [qm/fun-mode])
