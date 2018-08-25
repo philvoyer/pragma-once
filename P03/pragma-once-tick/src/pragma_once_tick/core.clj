@@ -51,5 +51,5 @@
   :draw draw
   :update update-scene
   :mouse-released click-release
-  :features [:resizable]
+  :features [:resizable :no-bind-output]
   :middleware [qm/fun-mode])
