@@ -46,7 +46,7 @@
          :press false
          :stroke-color (random-color-rgb 256)))
 
-(defn key-release [state]
+(defn key-release [state event]
   (quil/background clear-color)
   state)
 
