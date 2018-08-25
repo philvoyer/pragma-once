@@ -51,13 +51,13 @@
   state)
 
 (quil/defsketch pragma-once-stroke
-  :title  "#pragma-once-stroke"
-  :size  [256 256]
-  :setup  setup
-  :draw   draw
+  :title "#pragma-once-stroke"
+  :size [256 256]
+  :setup setup
+  :draw draw
   :update update-scene
-  :mouse-pressed  click-press
+  :mouse-pressed click-press
   :mouse-released click-release
-  :key-released   key-release
-  :features      [:resizable]
-  :middleware    [qm/fun-mode])
+  :key-released key-release
+  :features [:resizable :no-bind-output]
+  :middleware [qm/fun-mode])
