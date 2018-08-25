@@ -25,12 +25,12 @@
   (assoc state :press false))
 
 (quil/defsketch pragma-once-background
-  :title  "#pragma-once-background"
-  :size  [256 256]
-  :setup  setup
-  :draw   draw
+  :title "#pragma-once-background"
+  :size [256 256]
+  :setup setup
+  :draw draw
   :update update-scene
-  :mouse-pressed  click-press
+  :mouse-pressed click-press
   :mouse-released click-release
-  :features      [:resizable]
-  :middleware    [qm/fun-mode])
+  :features [:resizable :no-bind-output]
+  :middleware [qm/fun-mode])
