@@ -7,6 +7,7 @@
 (def timer-delay-max 5000)
 
 (defn tick []
+  (println "tick")
   (quil/background 255))
 
 (defn setup []
