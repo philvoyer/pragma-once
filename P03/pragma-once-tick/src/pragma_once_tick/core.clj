@@ -20,32 +20,13 @@
    :timer-delay timer-delay-initial
    :timer-current 0})
 
-;; (defn update-timer [state callback]
-;;   ;; FFT update timer-current tout le temps et faire un when au lieu d'un if ?
-;;   ;; TODO valider si cette approche marche
-;;   ;; TODO valider si le le time-elapsed pour tomber dans le négatif comme dans l'autre projet
-;;   (swap! state assoc :timer-current (+ (:timer-current state) (:time-elapsed state)))
-;;   (when (> (:timer-current state) (:timer-delay state))
-;;     (do
-;;       (callback)
-;;       (mod (:timer-current state) (:timer-delay state)))
-;;     ))
-
-;; version de ss
-;; (defn update-timer []
-;;   (swap! time-state assoc :timer-current (+ (:timer-current @time-state) (:time-elapsed @time-state)))
-;;   (when (> (:timer-current @time-state) (:timer-delay @time-state))
-;;     (do
-;;       (swap! time-state assoc :timer-current (mod (:timer-current @time-state) (:timer-delay @time-state)))
-;;       (println "<timer tick>"))))
-
 (defn update-timer [state callback]
+  ;; TODO let ... (+ (:timer-current state) (:time-elapsed state))
   (if (> (:timer-current state) (:timer-delay state))
     (do
       (callback)
       (mod (:timer-current state) (:timer-delay state)))
     (+ (:timer-current state) (:time-elapsed state))))
-
 
 (defn update-scene [state]
   (assoc state
