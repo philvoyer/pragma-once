@@ -7,7 +7,6 @@
 (def timer-delay-max 5000)
 
 (defn tick []
-  (println "tick")
   (quil/background 255))
 
 (defn setup []
@@ -21,12 +20,12 @@
    :timer-current 0})
 
 (defn update-timer [state callback]
-  ;; TODO let ... (+ (:timer-current state) (:time-elapsed state))
-  (if (> (:timer-current state) (:timer-delay state))
-    (do
-      (callback)
-      (mod (:timer-current state) (:timer-delay state)))
-    (+ (:timer-current state) (:time-elapsed state))))
+  (let [time-new (+ (:timer-current state) (:time-elapsed state))]
+    (if (> time-new (:timer-delay state))
+      (do
+        (callback)
+        (mod time-new (:timer-delay state)))
+      time-new)))
 
 (defn update-scene [state]
   (assoc state
